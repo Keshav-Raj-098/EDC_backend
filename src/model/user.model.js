@@ -44,6 +44,14 @@ userSchema.pre("save",async function(next){
 })
 
 
+userSchema.pre("save",async function(next){
+    if(this.isModified("username"))  {
+        this.username = this.username.toLowerCase().replace(/ /g, '')
+    }
+    next()
+})
+
+
 
 
 userSchema.methods.isPasswordCorrect = async function(password){

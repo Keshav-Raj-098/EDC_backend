@@ -1,7 +1,7 @@
 import {User} from "../model/user.model.js"
 import {asyncHandler} from "../utils/asynchandler.js"
 import {ApiError} from "../utils/Apierror.js"
-import {Apiresponse} from "../utils/Apiresponse.js"
+import { userhtml } from "../utils/sendhtml.utils.js"
 
 
 
@@ -30,9 +30,8 @@ const {fullname,username,email,password,} = req.body
     }
 
    const user = await User.create({username,fullname,password,email})
-   return res.status(200).json(
-    new Apiresponse(200,user,"User registered Successfully")
-   )
+   return res.status(200).send(userhtml(user))
+   
     
 
 })
@@ -62,9 +61,7 @@ const userlogin = asyncHandler(async(req,res)=>{
 
     const user = await User.findById(findUser._id).select("-password")
 
-    return res.status(200).json(
-        new Apiresponse(200,user,"loggedin Successfulluy")
-    )
+    return res.status(200).send(userhtml(user))
     
 })
 

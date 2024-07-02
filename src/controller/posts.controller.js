@@ -1,8 +1,7 @@
 import { asyncHandler } from "../utils/asynchandler.js"
 import { ApiError } from "../utils/Apierror.js"
-import { Apiresponse } from "../utils/Apiresponse.js"
+import { Blogshtml } from "../utils/sendhtml.utils.js"
 import { Blogs } from "../model/posts.model.js"
-import { get } from "mongoose"
 
 
 // Create Blog
@@ -35,10 +34,8 @@ const createBlog = asyncHandler(async (req, res) => {
 
     if (!blogs) { throw new ApiError(400, "Can't fetch blogs now") }
 
-
-    return res.status(200).json(
-        new Apiresponse(200, blogs, "post created,fetch with /posts")
-    )
+  let bloghtml = Blogshtml(blogs)
+  res.status(200).send(bloghtml)
 })
 
 
@@ -54,8 +51,11 @@ const readBlog = asyncHandler(async (req, res) => {
     const allBlog = await Blogs.find().select("-_id")
 
     if (!allBlog) { throw new ApiError(401, "There is not Any Blog") }
+   
+    const allHtml = allBlog.map(blog => Blogshtml(blog)).join('');
 
-    res.send(allBlog)
+    res.status(200).send(allHtml)
+
 
 })
 
@@ -80,21 +80,9 @@ const readThis = asyncHandler(async (req, res) => {
 
     if (!getBlog) { throw new ApiError(401, "Blog does't Exist") }
 
-    res.send(getBlog)
-
-
-
+    let bloghtml = Blogshtml(getBlog)
+    res.status(200).send(bloghtml)
 })
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -107,11 +95,9 @@ const updateBlog = asyncHandler(async (req, res) => {
 
     if (!oldtitle) { throw new ApiError(400, "please provide the title of the blog you want to update") }
 
-    if ((!newtitle) && (newcontent) && (newauthor)) 
-        { throw new ApiError(401, "Please prove the field you want to update") }
+    if ((!newtitle) && (newcontent) && (newauthor)) { throw new ApiError(401, "Please prove the field you want to update") }
 
     let z = oldtitle.toLowerCase().replace(/ /g, '')
-    console.log(z);
 
 
     const updateFields = {};
@@ -122,26 +108,22 @@ const updateBlog = asyncHandler(async (req, res) => {
     }
 
     if (newcontent) {
-        updateFields.content = newcontent; // Correcting the typo from "contennt" to "content"
+        updateFields.content = newcontent;
     }
 
     if (newauthor) {
         updateFields.author = newauthor;
     }
 
-    console.log(updateFields);
-
-
     const getBlog = await Blogs.findOneAndUpdate({ key: z },
-         { $set: updateFields }, { new: true })
+        { $set: updateFields }, { new: true })
 
 
     if (!getBlog) { throw new ApiError(400, "Blog not found") }
 
 
-    res.status(200).json(
-        new Apiresponse(200, getBlog, "updated Successfully")
-    )
+    let bloghtml = Blogshtml(getBlog)
+  res.status(200).send(bloghtml)
 
 })
 
@@ -152,10 +134,11 @@ const updateBlog = asyncHandler(async (req, res) => {
 
 const deleteBlog = asyncHandler(async (req, res) => {
 
-    
+
     const { key } = req.params;
 
-
+   console.log(key);
+   
 
     if (!key) {
         throw new ApiError(400, "Title is missing")
@@ -164,24 +147,16 @@ const deleteBlog = asyncHandler(async (req, res) => {
 
     let a = key.toLowerCase()
 
-    const getBlog = await Blogs.findOneAndDelete({key:a})
+    const getBlog = await Blogs.findOneAndDelete({ key: a })
 
-    if(!getBlog){throw new ApiError(400,"Unable to delete the blog")}
+    if (!getBlog) { throw new ApiError(400, "Blog not Found") }
 
-    res.status(200).json(new Apiresponse(200,{},"Deleted Successfully"))
+    res.status(200).send("Deleted Successfully")
 
 
 
 
 })
-
-
-
-
-
-
-
-
 
 
 
