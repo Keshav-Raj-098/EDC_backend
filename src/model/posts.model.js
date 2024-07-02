@@ -1,21 +1,28 @@
 import mongoose, { Schema } from "mongoose";
 
-const reviewSchema = new Schema({
+const blogpost = new Schema({
 
- description:{
-    type:String,
-    required:true,
- },
- owner:{
-    type:Schema.Types.ObjectId,
-    ref:"User"
- },
- rating:{
-    type:Number,
-    required:true
- }
-
+   title:{
+      type:String,
+      required:true,
+      unique:true,
+      trim:true
+   },
+   content:{
+      type:String,
+      required:true
+   },
+   author:{
+      type: String,
+      required:true
+   },
+   key:{
+      type:String,
+      lowercase: true,
+   }
 
 },{timestamps:true})
 
-const Review = mongoose.model("Review", reviewSchema)
+
+
+export const Blogs = mongoose.model("Blogs", blogpost)
