@@ -62,7 +62,6 @@ const userlogin = asyncHandler(async(req,res)=>{
     const user = await User.findById(findUser._id).select("-password")
 
     return res.status(200).send(userhtml(user,"User logged in Successfully"))
-    
 })
 
 export {userRegisteration,userlogin}

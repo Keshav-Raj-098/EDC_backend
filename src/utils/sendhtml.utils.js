@@ -35,7 +35,6 @@ const Blogshtml = function(blog) {
     return myhtml
 
 }
-
 const userhtml = function(user,msg) {
 
     let myhtml =  `

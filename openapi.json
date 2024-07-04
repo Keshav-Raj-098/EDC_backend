@@ -1,0 +1,388 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "EDC_Backend",
+    "version": "1.0.0",
+    "description":"To put  params in url you can change the it in openapi.json or type the required link your browser, also the output is in html hence the  view is better  or you can use postman for better experience"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "tags": [
+    {
+      "name": "user",
+      "description": "Register the user or login registration is important to use the Blogs and Comments folder ,beacuse there you have to use your username in url in place of **\"testuser\"**"
+    },
+    {
+      "name": "Blogs",
+      "description": "This folder hadles all the CRUD operations related to Blogs"
+    },
+    {
+      "name": "comments",
+      "description": "This folder do the CRUD operation on Comments"
+    }
+  ],
+  "paths": {
+    "/user/register": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "userRegistartion",
+        "description": "register the user by filling the following details\n\n(username must be a single word)",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "fullname": "Test User",
+                  "password": "987654321",
+                  "username": "testuser",
+                  "email": "xyz@gmail.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              
+              "text/html":{
+                "schema": {
+                "type": "string",
+                "example": "<h1>hello</h1>"
+              }
+              }
+            
+            }
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "login",
+        "description": "You can verify yourself by your username it may exist or may not,",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "username": "testuser",
+                  "password": "987654321"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/html":{
+                "schema": {
+                "type": "string",
+                "properties":"html",
+                "example": "hello;"
+              }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/blogs/c/testuser/create": {
+      "post": {
+        "tags": [
+          "Blogs"
+        ],
+        "summary": "createBlogs",
+        "description": "replace the \"testuser\" with your username(username must be a single word)",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "title": "EDc_recruitment",
+                  "content": "You have to do either the frontent or backend or both,doing both is not necessary",
+                  "author": "Prtayaksh"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/html":{
+                "schema": {
+                "type": "string",
+                "properties":"html",
+                "example": "hello;"
+              }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/blogs/c/testuser/read": {
+      "get": {
+        "tags": [
+          "Blogs"
+        ],
+        "summary": "readAllBlogs",
+        "description": "replace the \"testuser\" with your username(username must be a single word)",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/html":{
+                "schema": {
+                "type": "string",
+                "properties":"html",
+                "example": "hello;"
+              }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/blogs/c/testuser/edc_recruitment": {
+      "get": {
+        "tags": [
+          "Blogs"
+        ],
+        "summary": "readThisBlog",
+        "description": "replace the \"testuser\" with your username(username must be a single word)\n\nand edc_recruitment is the title if you title have spaces then write it in the url without spaces",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/html":{
+                "schema": {
+                "type": "string",
+                "properties":"html",
+                "example": "hello;"
+              }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Blogs"
+        ],
+        "summary": "deleteThisBlog",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/html":{
+                "schema": {
+                "type": "string",
+                "properties":"html",
+                "example": "hello;"
+              }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/blogs/c/testuser/update": {
+      "patch": {
+        "tags": [
+          "Blogs"
+        ],
+        "summary": "updateThisBlog",
+        "description": "replace the \"testuser\" with your username(username must be a single word)",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "oldtitle": "Edc_recruitment",
+                  "newtitle": "",
+                  "newcontent": "",
+                  "newauthor": "Pratyaksh sir"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/html":{
+                "schema": {
+                "type": "string",
+                "properties":"html",
+                "example": "hello;"
+              }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/comment/c/testuser/create": {
+      "post": {
+        "tags": [
+          "comments"
+        ],
+        "summary": "createComment",
+        "description": "replace the \"testuser\" with your username(username must be a single word)",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "author": "keshav",
+                  "content": "I want to be a part of the EdC Tech Team ",
+                  "key": "1"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/html":{
+                "schema": {
+                "type": "string",
+                "properties":"html",
+                "example": "hello;"
+              }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/comment/c/testuser/read": {
+      "get": {
+        "tags": [
+          "comments"
+        ],
+        "summary": "readAllComments",
+        "description": "replace the \"testuser\" with your username(username must be a single word)",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/html":{
+                "schema": {
+                "type": "string",
+                "properties":"html",
+                "example": "hello;"
+              }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/comment/c/testuser/update": {
+      "patch": {
+        "tags": [
+          "comments"
+        ],
+        "summary": "updateThisComment",
+        "description": "replace the \"testuser\" with your username(username must be a single word)",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "key": "4",
+                  "newcontent": "India wins the Worldcup",
+                  "newauthor": "Keshav Raj"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/html":{
+                "schema": {
+                "type": "string",
+                "properties":"html",
+                "example": "hello;"
+              }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/comment/c/testuser/1": {
+      "get": {
+        "tags": [
+          "comments"
+        ],
+        "summary": "readThisComment",
+        "description": "replace the \"testuser\" with your username(username must be a single word)\n\n1 is the key of the comment it is important to find the comment",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/html":{
+                "schema": {
+                "type": "string",
+                "properties":"html",
+                "example": "hello;"
+              }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/comment/c/testuser/4": {
+      "delete": {
+        "tags": [
+          "comments"
+        ],
+        "summary": "deleteThisComment",
+        "description": "replace the \"testuser\" with your username(username must be a single word)\n\n1 is the key of the comment it is important to find and then delete the comment",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/html":{
+                "schema": {
+                "type": "string",
+                "properties":"html",
+                "example": "hello;"
+              }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
