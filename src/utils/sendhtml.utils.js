@@ -35,14 +35,13 @@ const Blogshtml = function(blog) {
     return myhtml
 
 }
-
-const userhtml = function(user) {
+const userhtml = function(user,msg) {
 
     let myhtml =  `
 
     <div style="border: 1px solid black;">
     <ol>
-    
+    <li>Message :- ${msg}</li>    
     <li>Full Name :- ${user.fullname}</li>
     <li>Username :- ${user.username}</li>
     <li>Email :- ${user.email}</li>

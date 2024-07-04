@@ -30,7 +30,7 @@ const {fullname,username,email,password,} = req.body
     }
 
    const user = await User.create({username,fullname,password,email})
-   return res.status(200).send(userhtml(user))
+   return res.status(200).send(userhtml(user,"User registered Successfully"))
    
     
 
@@ -61,8 +61,7 @@ const userlogin = asyncHandler(async(req,res)=>{
 
     const user = await User.findById(findUser._id).select("-password")
 
-    return res.status(200).send(userhtml(user))
-    
+    return res.status(200).send(userhtml(user,"User logged in Successfully"))
 })
 
 export {userRegisteration,userlogin}
