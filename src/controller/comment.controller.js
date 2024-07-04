@@ -108,7 +108,7 @@ const deleteComments = asyncHandler(async (req, res) => {
 
     const deletedComment = await Comment.findOneAndDelete({ key: key })
 
-    if (!deletedComment) { throw new ApiError(200, "Unable to findd and delte the comment") }
+    if (!deletedComment) { throw new ApiError(200, "Unable to find and delte the comment") }
 
     res.status(200).send("Deleted Successfully")
 

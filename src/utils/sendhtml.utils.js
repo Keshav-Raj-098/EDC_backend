@@ -6,8 +6,8 @@ const Commenthtml = function(comment) {
     <div style="border: 1px solid black; margin-bottom:10px;">
     <ol>
     
-    <li>Content :- ${comment.content}</li>
     <li>Author :- ${comment.author}</li>
+    <li>Content :- ${comment.content}</li>
     <li>key :- ${comment.key}</li>
     <li>CreatedAt :- ${comment.createdAt}</li>
     <li>UpdatedAt :- ${comment.updatedAt}</li>    
@@ -36,13 +36,13 @@ const Blogshtml = function(blog) {
 
 }
 
-const userhtml = function(user) {
+const userhtml = function(user,msg) {
 
     let myhtml =  `
 
     <div style="border: 1px solid black;">
     <ol>
-    
+    <li>Message :- ${msg}</li>    
     <li>Full Name :- ${user.fullname}</li>
     <li>Username :- ${user.username}</li>
     <li>Email :- ${user.email}</li>

@@ -7,7 +7,8 @@ const app = express()
 
 
 
-app.use(cors({origin: "" ,credentials:true}))
+
+app.use(cors())
 app.use(express.static("public"))
 app.use(cookieParser())
 app.use(express.json({limit:"16kb"}))
