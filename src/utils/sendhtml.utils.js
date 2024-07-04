@@ -6,8 +6,8 @@ const Commenthtml = function(comment) {
     <div style="border: 1px solid black; margin-bottom:10px;">
     <ol>
     
-    <li>Content :- ${comment.content}</li>
     <li>Author :- ${comment.author}</li>
+    <li>Content :- ${comment.content}</li>
     <li>key :- ${comment.key}</li>
     <li>CreatedAt :- ${comment.createdAt}</li>
     <li>UpdatedAt :- ${comment.updatedAt}</li>    
