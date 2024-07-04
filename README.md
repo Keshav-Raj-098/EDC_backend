@@ -1,10 +1,10 @@
 Step - 1:-
-Clone the Repository
+Clone the Repository:-
                       git clone <repository_url>
                       cd <repository_directory>
 
 Step-2:-
-install the packages npm install
+install the packages:-  npm install
 
 step-3:-
 start with :- npm run dev
